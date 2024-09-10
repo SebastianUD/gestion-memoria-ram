@@ -42,7 +42,7 @@ function App() {
           newPartitions[i] = {
             ...newPartitions[i],
             used: size,
-            program: { label: `Programa ${programs.length + 1}`, size }
+            program: { label: `P${programs.length + 1}`, size }
           };
 
           // Si hay espacio sobrante, crear un nuevo bloque libre
@@ -63,7 +63,7 @@ function App() {
               newPartitions[i] = {
                 ...newPartitions[i],
                 used: size,
-                program: { label: `Programa ${programs.length + 1}`, size }
+                program: { label: `P${programs.length + 1}`, size }
               };
               assigned = true;
               break;
@@ -89,7 +89,7 @@ function App() {
             newPartitions[bestIndex] = {
               ...newPartitions[bestIndex],
               used: size,
-              program: { label: `Programa ${programs.length + 1}`, size }
+              program: { label: `P${programs.length + 1}`, size }
             };
             assigned = true;
           }
@@ -113,7 +113,7 @@ function App() {
             newPartitions[worstIndex] = {
               ...newPartitions[worstIndex],
               used: size,
-              program: { label: `Programa ${programs.length + 1}`, size }
+              program: { label: `P${programs.length + 1}`, size }
             };
             assigned = true;
           }
@@ -126,7 +126,7 @@ function App() {
     }
 
     if (assigned) {
-      setPrograms([...programs, { label: `Programa ${programs.length + 1}`, size }]);
+      setPrograms([...programs, { label: `P${programs.length + 1}`, size }]);
 
       // Actualizar el estado de la memoria
       const newFreeMemory = memory.free - size;
@@ -193,7 +193,8 @@ function App() {
           free: totalMemory - osPartitionSize,
           partitions: [
             { size: osPartitionSize, used: osPartitionSize, program: { label: 'Sistema Operativo', size: osPartitionSize } },
-            { size: 4 * 1024, used: 0, program: null },
+            { size: 2 * 1024, used: 0, program: null },
+            { size: 2 * 1024, used: 0, program: null },
             { size: 6 * 1024, used: 0, program: null },
             { size: 4 * 1024, used: 0, program: null }
           ],
