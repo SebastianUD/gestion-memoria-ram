@@ -78,7 +78,7 @@ h1 {
 
 .add-program button {
   padding: 10px 20px;
-  background-color: #ff0000;
+  background-color: #B50000;
   border: none;
   cursor: pointer;
   font-size: 1rem;
@@ -184,7 +184,7 @@ h1 {
 .partition-used {
   background-color: #B50000;
   color: #fff;
-  display: flex; 
+  display: grid; 
   justify-content: center;
   align-items: center; 
   font-size: 12px;
@@ -205,4 +205,12 @@ h1 {
   text-overflow: ellipsis;
   height: 100%;
   word-wrap: break-word;
+}
+
+.change-state{
+  justify-content: center;
+}
+
+.change-state-b{
+  background-color: #000;
 }
