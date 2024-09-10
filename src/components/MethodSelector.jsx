@@ -8,46 +8,46 @@ function MethodSelector({ currentMethod, onChangeMethod }) {
         <div className="toggle-option-m">
           <input
             type="radio"
-            id="fixed-size-static"
+            id="static-fixed"
             name="method"
-            value="fixed-size-static"
-            checked={currentMethod === 'fixed-size-static'}
-            onChange={() => onChangeMethod('fixed-size-static')}
+            value="static-fixed"
+            checked={currentMethod === 'static-fixed'}
+            onChange={() => onChangeMethod('static-fixed')}
           />
-          <label htmlFor="fixed-size-static">Particiones Estáticas - Fijo</label>
+          <label htmlFor="static-fixed">Particiones Estáticas - Fijo</label>
         </div>
         <div className="toggle-option-m">
           <input
             type="radio"
-            id="variable-size-static"
+            id="static-variable"
             name="method"
-            value="variable-size-static"
-            checked={currentMethod === 'variable-size-static'}
-            onChange={() => onChangeMethod('variable-size-static')}
+            value="static-variable"
+            checked={currentMethod === 'static-variable'}
+            onChange={() => onChangeMethod('static-variable')}
           />
-          <label htmlFor="variable-size-static">Particiones Estáticas - Variable</label>
+          <label htmlFor="static-variable">Particiones Estáticas - Variable</label>
         </div>
         <div className="toggle-option-m">
           <input
             type="radio"
-            id="dynamic-size-NOcompaction"
+            id="dynamic-no-compact"
             name="method"
-            value="dynamic-size-NOcompaction"
-            checked={currentMethod === 'dynamic-size-NOcompaction'}
-            onChange={() => onChangeMethod('dynamic-size-NOcompaction')}
+            value="dynamic-no-compact"
+            checked={currentMethod === 'dynamic-no-compact'}
+            onChange={() => onChangeMethod('dynamic-no-compact')}
           />
-          <label htmlFor="dynamic-size-NOcompaction">Particiones Dinámicas - Sin Compactación</label>
+          <label htmlFor="dynamic-no-compact">Particiones Dinámicas - Sin Compactación</label>
         </div>
         <div className="toggle-option-m">
           <input
             type="radio"
-            id="dynamic-size-compaction"
+            id="dynamic-compact"
             name="method"
-            value="dynamic-size-compaction"
-            checked={currentMethod === 'dynamic-size-compaction'}
-            onChange={() => onChangeMethod('dynamic-size-compaction')}
+            value="dynamic-compact"
+            checked={currentMethod === 'dynamic-compact'}
+            onChange={() => onChangeMethod('dynamic-compact')}
           />
-          <label htmlFor="dynamic-size-compaction">Particiones Dinámicas - Con Compactación</label>
+          <label htmlFor="dynamic-compact">Particiones Dinámicas - Con Compactación</label>
         </div>
       </div>
     </div>
