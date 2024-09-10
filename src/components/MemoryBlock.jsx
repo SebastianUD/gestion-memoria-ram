@@ -34,7 +34,9 @@ function MemoryBlock({ memory, currentMethod }) {
                 style={{ width: `${(partition.used) * 100}%` }}
               >
                 {partition.program ? `${partition.program.label} - ${partition.used} KiB` : ''}
-                <div className='change-state'><button className='change-state-b'>Cambiar Estado</button></div>
+                <div className='change-state'>
+                  <button className='change-state-b'>Cambiar Estado</button>
+                </div>
               </div>
               <div 
                 className="partition-free" 
