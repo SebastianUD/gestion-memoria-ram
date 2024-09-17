@@ -4,6 +4,7 @@ import MethodSelector from './components/MethodSelector';
 import ProgramAdder from './components/ProgramAdder';
 import MemoryInfo from './components/MemoryInfo';
 import AlgorithmSelector from './components/AlgorithmSelector';
+import ProgramStateManager from './components/ProgramStateManager';
 import './App.css';
 
 function App() {
@@ -126,7 +127,8 @@ function App() {
     }
 
     if (assigned) {
-      setPrograms([...programs, { label: `P${programs.length + 1}`, size }]);
+      const newProgram = { label: `P${programs.length + 1}`, size, state: 'active' };
+      setPrograms([...programs, newProgram]);
 
       // Actualizar el estado de la memoria
       const newFreeMemory = memory.free - size;
@@ -140,8 +142,74 @@ function App() {
     }
   };
 
-  //En construccion
-  const compactMemory = () => {    
+  const changeProgramState = (programLabel, newState) => {
+    const updatedPrograms = programs.map(program => 
+      program.label === programLabel ? { ...program, state: newState } : program
+    );
+    setPrograms(updatedPrograms);
+
+    const updatedPartitions = memory.partitions.map(partition => {
+      if (partition.program && partition.program.label === programLabel) {
+        return { 
+          ...partition, 
+          program: newState === 'terminated' ? null : { ...partition.program, state: newState },
+          used: newState === 'terminated' ? 0 : partition.used
+        };
+      }
+      return partition;
+    });
+
+    setMemory({ ...memory, partitions: updatedPartitions });
+
+    if (newState === 'terminated') {
+      const terminatedProgram = programs.find(p => p.label === programLabel);
+      if (terminatedProgram) {
+        setMemory(prevMemory => ({
+          ...prevMemory,
+          free: prevMemory.free + terminatedProgram.size,
+        }));
+      }
+    }
+  };
+
+  const compactMemory = () => {
+    if (currentMethod !== 'dynamic-compact') {
+      alert("La compactación solo está disponible en el método de particiones dinámicas con compactación.");
+      return;
+    }
+
+    let newPartitions = [];
+    let freeSpace = 0;
+    let usedSpace = 0;
+
+    // Primero, movemos todas las particiones usadas al principio
+    memory.partitions.forEach(partition => {
+      if (partition.program && partition.program.state !== 'terminated') {
+        newPartitions.push({
+          ...partition,
+          size: partition.used // Ajustamos el tamaño de la partición al tamaño usado
+        });
+        usedSpace += partition.used;
+      } else {
+        freeSpace += partition.size;
+      }
+    });
+
+    // Luego, añadimos una única partición libre al final
+    if (freeSpace > 0) {
+      newPartitions.push({ size: freeSpace, used: 0, program: null });
+    }
+
+    // Calculamos la nueva fragmentación interna
+    const internalFragmentation = newPartitions.reduce((acc, partition) => 
+      acc + (partition.program ? partition.size - partition.used : 0), 0);
+
+    setMemory({
+      ...memory,
+      partitions: newPartitions,
+      free: freeSpace,
+      internalFragmentation: internalFragmentation
+    });
   };
 
   const changeMethod = (method) => {
@@ -218,8 +286,9 @@ function App() {
         <MethodSelector currentMethod={currentMethod} onChangeMethod={changeMethod} />
         <AlgorithmSelector currentAlgorithm={currentAlgorithm} onChangeAlgorithm={changeAlgorithm} />
         <MemoryBlock memory={memory} programs={programs} currentMethod={currentMethod} />
-        <MemoryInfo memory={memory} />
+        <MemoryInfo memory={memory} internalFragmentation={memory.internalFragmentation} />
         <ProgramAdder onAddProgram={addProgram} />
+        <ProgramStateManager programs={programs} onChangeState={changeProgramState}  memory={memory}/>
         <h3>Acciones:</h3>
         <button onClick={compactMemory}>Compactar Memoria</button>
       </header>

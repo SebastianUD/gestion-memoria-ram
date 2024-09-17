@@ -1,4 +1,3 @@
-// MemoryInfo.jsx
 import React from 'react';
 
 function MemoryInfo({ memory }) {
@@ -7,8 +6,9 @@ function MemoryInfo({ memory }) {
   const freeMiB = (memory.free / 1024).toFixed(2);
   const usedMiB = (usedMemory / 1024).toFixed(2);
 
+  // Calculamos la fragmentación interna
   const internalFragmentation = memory.partitions.reduce((acc, partition) => 
-    acc + (partition.used > 0 && partition.used < partition.size ? partition.size - partition.used : 0), 0);
+    acc + (partition.program ? partition.size - partition.used : 0), 0);
   const fragmentationMiB = (internalFragmentation / 1024).toFixed(2);
 
   return (

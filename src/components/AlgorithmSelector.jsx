@@ -1,4 +1,3 @@
-// AlgorithmSelector.jsx
 import React from 'react';
 
 function AlgorithmSelector({ currentAlgorithm, onChangeAlgorithm }) {

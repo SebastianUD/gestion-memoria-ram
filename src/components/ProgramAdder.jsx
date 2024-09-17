@@ -1,4 +1,3 @@
-// ProgramAdder.jsx
 import React, { useState } from 'react';
 
 function ProgramAdder({ onAddProgram }) {
