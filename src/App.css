@@ -78,7 +78,7 @@ h1 {
 
 .add-program button {
   padding: 10px 20px;
-  background-color: #ff0000;
+  background-color: #00aa25;
   border: none;
   cursor: pointer;
   font-size: 1rem;
@@ -89,74 +89,39 @@ h1 {
   margin-top: 10px;
 }
 
-.algorithm-selector {
-  margin: 20px 0;
-  text-align: center;
-}
-
-.toggle-container-a {
+.toggle-container {
   display: flex;
   justify-content: center;
   gap: 20px;
 }
 
-.toggle-option-a {
+.toggle-option {
   display: flex;
   align-items: center;
 }
 
-.toggle-option-a input[type="radio"] {
+.toggle-option input[type="radio"] {
   display: none;
 }
 
-.toggle-option-a label {
+.toggle-option label {
   padding: 10px 20px;
-  background-color: #ff0000;
+  background-color: #6e6b6b;
   border: 2px solid #ccc;
   border-radius: 20px;
   cursor: pointer;
   transition: all 0.3s ease;
-}
+} 
 
-.toggle-option-a input[type="radio"]:checked + label {
-  background-color: #4CAF50;
+.toggle-option input[type="radio"]:checked + label {
+  background-color: #0D05F2;
   color: white;
-  border-color: #ffffff;
+  border-color: #E5E5E5;
 }
 
-.method-selector {
+.algorithm-selector, .method-selector {
   margin: 20px 0;
   text-align: center;
-}
-
-.toggle-container-m {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-.toggle-option-m {
-  display: flex;
-  align-items: center;
-}
-
-.toggle-option-m input[type="radio"] {
-  display: none;
-}
-
-.toggle-option-m label {
-  padding: 10px 20px;
-  background-color: #818181;
-  border: 2px solid #ccc;
-  border-radius: 20px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.toggle-option-m input[type="radio"]:checked + label {
-  background-color: #1900ff;
-  color: white;
-  border-color: #ffffff;
 }
 
 .memory-block {
@@ -167,7 +132,8 @@ h1 {
   width: 100%;
   height: 150px;
   margin: 20px 0;
-  background-color: #4CAF50;
+  background-color: #E5E5E5;
+  position: relative; /* Añadir posición relativa para manejar mejor el contenido flotante */
 }
 
 .partition {
@@ -178,10 +144,11 @@ h1 {
   border: 1px solid #000;
   overflow: hidden;
   height: 100%;
+  font-weight: bold;
 }
 
 .partition-used {
-  background-color: #f44336;
+  background-color: #B50000;
   color: white;
   display: flex; 
   justify-content: center;
@@ -194,7 +161,7 @@ h1 {
 }
 
 .partition-free {
-  background-color: #4CAF50;
+  background-color: #29652C;
   color: white;
   display: flex;
   justify-content: center;

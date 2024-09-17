@@ -1,11 +1,13 @@
+// AlgorithmSelector.jsx
 import React from 'react';
 
 function AlgorithmSelector({ currentAlgorithm, onChangeAlgorithm }) {
   return (
-    <div className="algorithm-selector-a">
+    <div className="algorithm-selector">
       <h3>Algoritmo de Asignación:</h3>
-      <div className="toggle-container-a">
-        <div className="toggle-option-a">
+      <div className="toggle-container">
+        {/* Opción Primer Ajuste */}
+        <div className="toggle-option">
           <input
             type="radio"
             id="first-fit"
@@ -16,7 +18,9 @@ function AlgorithmSelector({ currentAlgorithm, onChangeAlgorithm }) {
           />
           <label htmlFor="first-fit">Primer Ajuste</label>
         </div>
-        <div className="toggle-option-a">
+
+        {/* Opción Mejor Ajuste */}
+        <div className="toggle-option">
           <input
             type="radio"
             id="best-fit"
@@ -27,7 +31,9 @@ function AlgorithmSelector({ currentAlgorithm, onChangeAlgorithm }) {
           />
           <label htmlFor="best-fit">Mejor Ajuste</label>
         </div>
-        <div className="toggle-option-a">
+
+        {/* Opción Peor Ajuste */}
+        <div className="toggle-option">
           <input
             type="radio"
             id="worst-fit"

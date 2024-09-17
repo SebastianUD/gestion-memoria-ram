@@ -8,7 +8,7 @@ import './App.css';
 
 function App() {
   const totalMemory = 16 * 1024; // 16 MiB en KiB
-  const osPartitionSize = 2 * 1024; // 2 MiB para el sistema operativo
+  const osPartitionSize = 1 * 1024; // 1 MiB para el sistema operativo
   const [memory, setMemory] = useState({
     total: totalMemory,
     free: totalMemory - osPartitionSize,
@@ -140,32 +140,8 @@ function App() {
     }
   };
 
-  const compactMemory = () => {
-    // Compacta todos los bloques libres en uno solo al final
-    if (currentMethod !== 'dynamic-compact') {
-      alert("Compactación solo disponible en modo dinámico con compactación.");
-      return;
-    }
-
-    let newPartitions = [...memory.partitions];
-    let freeSpace = 0;
-    let usedPartitions = [];
-
-    newPartitions.forEach(partition => {
-      if (partition.program !== null) {
-        usedPartitions.push(partition);
-      } else {
-        freeSpace += partition.size;
-      }
-    });
-
-    usedPartitions.push({ size: freeSpace, used: 0, program: null });
-
-    setMemory({
-      ...memory,
-      partitions: usedPartitions,
-      free: freeSpace
-    });
+  //En construccion
+  const compactMemory = () => {    
   };
 
   const changeMethod = (method) => {
@@ -182,10 +158,10 @@ function App() {
           free: totalMemory - osPartitionSize,
           partitions: [
             { size: osPartitionSize, used: osPartitionSize, program: { label: 'Sistema Operativo', size: osPartitionSize } },
-            ...Array(7).fill().map(() => ({ size: 2 * 1024, used: 0, program: null }))
+            ...Array(5).fill().map(() => ({ size: 3 * 1024, used: 0, program: null }))
           ],
           method: 'static-fixed',
-          partitionSizes: [2 * 1024, 2 * 1024, 2 * 1024, 2 * 1024, 2 * 1024, 2 * 1024, 2 * 1024]
+          partitionSizes: [3 * 1024, 3 * 1024, 3 * 1024, 3 * 1024, 3 * 1024]
         };
       case 'static-variable':
         return {
@@ -193,13 +169,14 @@ function App() {
           free: totalMemory - osPartitionSize,
           partitions: [
             { size: osPartitionSize, used: osPartitionSize, program: { label: 'Sistema Operativo', size: osPartitionSize } },
-            { size: 2 * 1024, used: 0, program: null },
+            { size: 3 * 1024, used: 0, program: null },
             { size: 2 * 1024, used: 0, program: null },
             { size: 6 * 1024, used: 0, program: null },
-            { size: 4 * 1024, used: 0, program: null }
+            { size: 3 * 1024, used: 0, program: null },
+            { size: 1 * 1024, used: 0, program: null }
           ],
           method: 'static-variable',
-          partitionSizes: [4 * 1024, 6 * 1024, 4 * 1024]
+          partitionSizes: [3 * 1024, 2 * 1024, 6 * 1024, 3 * 1024, 1 * 1024]
         };
       case 'dynamic-no-compact':
         return {

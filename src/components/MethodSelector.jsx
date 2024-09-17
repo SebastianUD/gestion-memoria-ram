@@ -1,11 +1,13 @@
+// MethodSelector.jsx
 import React from 'react';
 
 function MethodSelector({ currentMethod, onChangeMethod }) {
   return (
     <div className="method-selector">
-      <h3>Métodos de Gestión:</h3>
-      <div className="toggle-container-m">
-        <div className="toggle-option-m">
+      <h3>Métodos de Gestión de Memoria:</h3>
+      <div className="toggle-container">
+        {/* Particiones Estáticas - Fijo */}
+        <div className="toggle-option">
           <input
             type="radio"
             id="static-fixed"
@@ -16,7 +18,9 @@ function MethodSelector({ currentMethod, onChangeMethod }) {
           />
           <label htmlFor="static-fixed">Particiones Estáticas - Fijo</label>
         </div>
-        <div className="toggle-option-m">
+
+        {/* Particiones Estáticas - Variable */}
+        <div className="toggle-option">
           <input
             type="radio"
             id="static-variable"
@@ -27,7 +31,9 @@ function MethodSelector({ currentMethod, onChangeMethod }) {
           />
           <label htmlFor="static-variable">Particiones Estáticas - Variable</label>
         </div>
-        <div className="toggle-option-m">
+
+        {/* Particiones Dinámicas - Sin Compactación */}
+        <div className="toggle-option">
           <input
             type="radio"
             id="dynamic-no-compact"
@@ -38,7 +44,9 @@ function MethodSelector({ currentMethod, onChangeMethod }) {
           />
           <label htmlFor="dynamic-no-compact">Particiones Dinámicas - Sin Compactación</label>
         </div>
-        <div className="toggle-option-m">
+
+        {/* Particiones Dinámicas - Con Compactación */}
+        <div className="toggle-option">
           <input
             type="radio"
             id="dynamic-compact"
